@@ -100,13 +100,13 @@ class ClickAdmin(admin.ModelAdmin):
                          'Advertiser name',
                          'Zone'))
         for click in queryset:
-            writer.writerow((unicode(click.ad.title).encode("utf-8"),
+            writer.writerow((str(click.ad.title).encode("utf-8"),
                              click.ad.url,
                              click.source_ip,
                              click.click_date.isoformat(),
                              click.ad.advertiser.pk,
-                             unicode(click.ad.advertiser.company_name).encode("utf-8"),
-                             unicode(click.ad.zone).encode("utf-8")))
+                             str(click.ad.advertiser.company_name).encode("utf-8"),
+                             str(click.ad.zone).encode("utf-8")))
         return response
     download_clicks.short_description = "Download selected Ad Clicks"
 
@@ -134,13 +134,13 @@ class ImpressionAdmin(admin.ModelAdmin):
                          'Advertiser name',
                          'Zone'))
         for impression in queryset:
-            writer.writerow((unicode(impression.ad.title).encode("utf-8"),
+            writer.writerow((str(impression.ad.title).encode("utf-8"),
                              impression.ad.url,
                              impression.source_ip,
                              impression.impression_date.isoformat(),
                              impression.ad.advertiser.pk,
-                             unicode(impression.ad.advertiser.company_name).encode("utf-8"),
-                             unicode(impression.ad.zone).encode("utf-8")))
+                             str(impression.ad.advertiser.company_name).encode("utf-8"),
+                             str(impression.ad.zone).encode("utf-8")))
         return response
     download_impressions.short_description = "Download selected Ad Impressions"
 
