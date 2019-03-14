@@ -33,6 +33,14 @@ def render_ads_zone(context, zone):
                     'impression_date': timezone.now(),
                     'source_ip': get_client_ip(request),
                 })
+        else:
+            impression, created = Impression.objects.get_or_create(
+                ad=ad,
+                session_id="",
+                defaults={
+                    'impression_date': timezone.now(),
+                    'source_ip': get_client_ip(request),
+                })
     context.update({
         'ad': ad,
         'google_adsense_client': settings.ADS_GOOGLE_ADSENSE_CLIENT,

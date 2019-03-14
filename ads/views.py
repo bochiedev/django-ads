@@ -23,4 +23,12 @@ class AdClickView(
                     'click_date': timezone.now(),
                     'source_ip': get_client_ip(request),
                 })
+        else:
+            click, created = Click.objects.get_or_create(
+                ad=ad,
+                session_id="",
+                defaults={
+                    'click_date': timezone.now(),
+                    'source_ip': get_client_ip(request),
+                })
         return HttpResponseRedirect(ad.url)
