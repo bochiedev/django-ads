@@ -57,6 +57,11 @@ def now_plus_1_day():
     return timezone.now() + timezone.timedelta(days=1)
 
 
+def get_upload_to(instance, filename):
+    return 'images/ads/%d/%s' % (instance.title, filename)
+
+
+
 @python_2_unicode_compatible
 class Ad(models.Model):
     """
@@ -118,7 +123,7 @@ class AdImage(models.Model):
         related_name='images')
     device = models.CharField(
         verbose_name=_('Device'), max_length=2, choices=settings.ADS_DEVICES)
-    image = models.ImageField(verbose_name=_('Image'), max_length=255)
+    image = models.ImageField(upload_to=get_upload_to ,verbose_name=_('Image'), max_length=255)
 
     @property
     def size(self):
