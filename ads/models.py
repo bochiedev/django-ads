@@ -58,7 +58,7 @@ def now_plus_1_day():
 
 
 def get_upload_to(instance, filename):
-    return 'images/ads/%d/%s' % (instance.title, filename)
+    return 'images/ads/%d/%s' % (instance.ad.title, filename)
 
 
 
